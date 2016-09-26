@@ -5,8 +5,8 @@ window.addEventListener("load",function(){
 	var	contador = document.getElementById("contador");
 	var	twittear = document.getElementById("tweet");
 	var	contenedor = document.getElementById("contenedor");
+
 		//innerHTML o textContent. mejor el segundo
-	var	caracteres = contador.textContent = "140";
 
 		/*
 		Versión 0.0.1:3. En el evento, coger el texto del textarea.
@@ -16,7 +16,8 @@ window.addEventListener("load",function(){
 		3. En el evento, coger el texto del textarea.
 		4. Agegar el texto al HTML.
 		*/
-		
+		//Para que no se pueda enviar nada si esta vacio en el inicio.
+		twittear.disabled = true;
 		twittear.addEventListener("click", function(e){
 		e.preventDefault();//Evita que mande o intente mandar a otra web.
 		agregarMensaje(txtArea.value);
@@ -25,17 +26,39 @@ window.addEventListener("load",function(){
 		var agregarMensaje = function(texto){
 		var tweet = document.createElement("div");
 		tweet.innerHTML = texto;
-		//Ya esta declarado al inicio
-		//var contenedor = document.getElementById("contenedor");
+		//Si no hay hijos entonces se agrega ahi, sino, se agrega antes del primer hijo
 		if(!contenedor.childNodes[0]){
 			contenedor.appendChild(tweet);
 		} else {
 			contenedor.insertBefore(tweet, contenedor.childNodes[0]);
 		}
+		//Restableciendo todo
 		txtArea.value = "";
-		//Aca faltaria agregar la hora en la siguiente version		
+		twittear.disabled = true;
+		contador.innerHTML = 140;
 		}
-		
+
+		/*
+		Versión 0.0.2:
+		1. No ingresar texto vacío (deshabilitar el botón de enviar).
+		2. Contar la cantidad de caracteres de forma regresiva.
+		*/
+
+		txtArea.addEventListener("keyup", function(){
+		deshabilitarBoton(txtArea);
+		contarCaractereres(txtArea);
+		})
+		var deshabilitarBoton = function(texto){
+			if(texto.value.length == 0 || texto.value.length > 140) {
+				twittear.disabled = true;
+			} else if (texto.value.length > 0) {
+				twittear.disabled = false;
+			}
+		}
+		var contarCaractereres = function(texto){
+			var caracteres = texto.value.length;
+			contador.innerHTML = 140 - caracteres;
+		}
 
 
 
