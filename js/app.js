@@ -1,7 +1,7 @@
 window.addEventListener("load",function(){
 	
 	var txtArea = document.getElementById("cajatexto");
-		//Aca se va agregar una funcion de autosize
+	txtArea.addEventListener("keypress", autosize);
 	var	contador = document.getElementById("contador");
 	var	twittear = document.getElementById("tweet");
 	var	contenedor = document.getElementById("contenedor");
@@ -21,6 +21,7 @@ window.addEventListener("load",function(){
 		twittear.addEventListener("click", function(e){
 		e.preventDefault();//Evita que mande o intente mandar a otra web.
 		agregarMensaje(txtArea.value);
+		resize();
 		});
 
 		var agregarMensaje = function(texto){
@@ -90,13 +91,26 @@ window.addEventListener("load",function(){
 			if (tecla == 8){
 				cajatexto.rows -=1;
 			}
-
-
-
 		}
 
-
-
+		/*
+		Versión 0.0.5: (Extra)
+		Si la cantidad de caracteres ingresados (sin dar un enter), supera al tamaño del
+		textarea por defecto, debe de agregarse una línea más para que no aparezca el scroll.
+		(Si en caso aplica)
+		*/
+		//O es la unica forma o todos se han plagiado. Pero esta bien hecho
+		//Hallar por que no se ejecuta cuando guardo la funcion en una variable y la agrego al manejador del evento.
+		function autosize(){
+			var el = this;
+	  		setTimeout(function(){
+			    el.style.cssText = 'height:auto';
+			    el.style.cssText = 'height:' + el.scrollHeight + 'px';
+	  	},0);
+		};
+		function resize(){
+			txtArea.style.cssText = 'height:auto';
+		}
 
 });
 
