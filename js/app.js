@@ -47,6 +47,7 @@ window.addEventListener("load",function(){
 		txtArea.addEventListener("keyup", function(){
 		deshabilitarBoton(txtArea);
 		contarCaractereres(txtArea);
+
 		})
 		var deshabilitarBoton = function(texto){
 			if(texto.value.length == 0 || texto.value.length > 140) {
@@ -58,9 +59,22 @@ window.addEventListener("load",function(){
 		var contarCaractereres = function(texto){
 			var caracteres = texto.value.length;
 			contador.innerHTML = 140 - caracteres;
+			/*
+			Versión 0.0.3:
+			1. Si pasa los 140 caracteres, deshabilitar el botón.(ya esta en la funcion deshabilitarboton)
+			2. Si pasa los 120 caracteres, mostrar el contador con OTRO color.
+			3. Si pasa los 130 caracteres, mostrar el contador con OTRO color.
+			4. si pasa los 140 caracteres, mostrar el contador en negativo.(implicito)
+
+			*/
+			if(caracteres >120 && caracteres < 130) {
+				contador.style.color = "blue";
+			} else if (caracteres > 130) {
+				contador.style.color = "red";
+			} else {
+				contador.style.color = "white";
+			}
+
 		}
-
-
-
 });
 
