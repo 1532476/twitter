@@ -3,7 +3,7 @@ window.addEventListener("load",function(){
 	var txtArea = document.getElementById("cajatexto");
 	txtArea.addEventListener("keypress", autosize);
 	var	contador = document.getElementById("contador");
-	var	twittear = document.getElementById("tweet");
+	var	twittear = document.getElementById("comentar");
 	var	contenedor = document.getElementById("contenedor");
 
 		//innerHTML o textContent. mejor el segundo
@@ -22,11 +22,12 @@ window.addEventListener("load",function(){
 		e.preventDefault();//Evita que mande o intente mandar a otra web.
 		agregarMensaje(txtArea.value);
 		resize();
+		//agregarHora();
 		});
 
 		var agregarMensaje = function(texto){
-		var tweet = document.createElement("div");
-		tweet.innerHTML = texto;
+		var tweet = document.createElement("p");
+		tweet.innerText = texto;
 		//Si no hay hijos entonces se agrega ahi, sino, se agrega antes del primer hijo
 		if(!contenedor.childNodes[0]){
 			contenedor.appendChild(tweet);
@@ -37,6 +38,8 @@ window.addEventListener("load",function(){
 		txtArea.value = "";
 		twittear.disabled = true;
 		contador.innerHTML = 140;
+		agregarHora(tweet);
+
 		}
 
 		/*
@@ -99,7 +102,7 @@ window.addEventListener("load",function(){
 		textarea por defecto, debe de agregarse una línea más para que no aparezca el scroll.
 		(Si en caso aplica)
 		*/
-		//O es la unica forma o todos se han plagiado. Pero esta bien hecho
+		//O es la unica forma o todos se hayn plagiado. Pero esta bien hecho
 		//Hallar por que no se ejecuta cuando guardo la funcion en una variable y la agrego al manejador del evento.
 		function autosize(){
 			var el = this;
@@ -111,6 +114,26 @@ window.addEventListener("load",function(){
 		function resize(){
 			txtArea.style.cssText = 'height:auto';
 		}
+
+		/*
+		Versión 0.0.6: (Extra)
+		1. Agregar la hora en que se publicó el tweet. En el formato de 24 horas: hh:mm
+		*/
+
+		function agregarHora(tweet){
+		var fecha = new Date();
+        var hora = fecha.getHours();
+        var minuto = fecha.getMinutes();
+            if (minuto < 10) {
+                minuto = "0" + minuto;
+            }
+        var horaImprimible = hora + " : " + minuto;
+        var tiempo = document.createElement("div");
+		tiempo.innerText = horaImprimible;
+
+		tweet.insertBefore(tiempo,tweet.childNodes[0]);  
+    }
+
 
 });
 
