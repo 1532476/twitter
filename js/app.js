@@ -44,9 +44,10 @@ window.addEventListener("load",function(){
 		2. Contar la cantidad de caracteres de forma regresiva.
 		*/
 
-		txtArea.addEventListener("keyup", function(){
+		txtArea.addEventListener("keyup", function(e){
 		deshabilitarBoton(txtArea);
 		contarCaractereres(txtArea);
+		calcularEnter(e);
 
 		})
 		var deshabilitarBoton = function(texto){
@@ -65,8 +66,8 @@ window.addEventListener("load",function(){
 			2. Si pasa los 120 caracteres, mostrar el contador con OTRO color.
 			3. Si pasa los 130 caracteres, mostrar el contador con OTRO color.
 			4. si pasa los 140 caracteres, mostrar el contador en negativo.(implicito)
-
 			*/
+
 			if(caracteres >120 && caracteres < 130) {
 				contador.style.color = "blue";
 			} else if (caracteres > 130) {
@@ -74,7 +75,28 @@ window.addEventListener("load",function(){
 			} else {
 				contador.style.color = "white";
 			}
+		}
+		/*
+		Versión 0.0.4:
+		1. Al presionar enter ("/n") que crezca el textarea de acuerdo al tamaño del texto
+		*/
+
+		var calcularEnter = function(e){
+			var tecla = e.keyCode;
+			//13 es igual a enter
+			if (tecla == 13){
+				cajatexto.rows +=1;
+			}//8 es backspace, sino, nunca se reduciria. :v
+			if (tecla == 8){
+				cajatexto.rows -=1;
+			}
+
+
 
 		}
+
+
+
+
 });
 
