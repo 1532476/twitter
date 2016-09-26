@@ -22,7 +22,7 @@ window.addEventListener("load",function(){
 		e.preventDefault();//Evita que mande o intente mandar a otra web.
 		agregarMensaje(txtArea.value);
 		resize();
-		//agregarHora();
+		agregarHora();
 		});
 
 		var agregarMensaje = function(texto){
