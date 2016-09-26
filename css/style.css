@@ -1,0 +1,58 @@
+html, body {
+	height: 100%;
+	width: 100%;
+	font-family: verdana;
+	text-align: center;
+}
+
+body {
+background: url(../img/bg.jpg);
+background-repeat: no-repeat;
+background-size: cover;
+
+}
+
+h1 {
+	color: white;
+	font-size: 3em;
+}
+#contenido {
+	width: 35%;
+	padding: 2% 5%;
+	color: white;
+	border-radius: 5px;
+	background-color: rgba(234,248,253,0.3);
+	margin: auto;
+	text-align: center;
+}
+
+#contenido textarea {
+	width: 90%;
+	border-radius: 5px;
+	font-size: 1.2em;
+	padding: 0.6em;
+	margin:0.3em auto;
+	display: block;
+	border: 0.3em solid #216e86;
+} 
+
+#contenido button {
+	color: white;
+	border-radius: 5px;
+	font-size: 1em;
+	padding: 0.6em 3.75em;
+	margin: 0.4em auto;
+	background-color: rgba(14, 113, 144, 0.8);
+}
+
+
+#contenido #contenedor {
+	width: 90%;
+	font-size: 1em;
+	padding: 5%;
+	margin: 2% auto;
+	background-color: white;
+	border-radius: 5px;
+	color: black;
+}
+
