@@ -38,6 +38,7 @@ h1 {
 
 #contenido button {
 	color: white;
+	width: 50%;
 	border-radius: 5px;
 	font-size: 1em;
 	padding: 0.6em 3.75em;
@@ -47,9 +48,11 @@ h1 {
 
 
 #contenido #contenedor {
+	text-align: center;
 	width: 90%;
+	height: auto;
 	font-size: 1em;
-	padding: 5%;
+	padding: 3%;
 	margin: 2% auto;
 	background-color: white;
 	border-radius: 5px;
